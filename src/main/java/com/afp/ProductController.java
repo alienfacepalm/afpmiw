@@ -29,9 +29,9 @@ public class ProductController {
     	String json = "";
     	
     	try{
-    		ObjectMapper mapper = new ObjectMapper();	
-    		mapper.configure(SerializationConfig.Feature.WRAP_ROOT_VALUE, true);
-    		json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(products);
+		ObjectMapper mapper = new ObjectMapper();	
+		mapper.configure(SerializationConfig.Feature.WRAP_ROOT_VALUE, true);
+		json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(products);
     	}catch(JsonGenerationException e){
     		e.printStackTrace();
     	}catch(JsonMappingException e){
