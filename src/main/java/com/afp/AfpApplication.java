@@ -8,5 +8,6 @@ public class AfpApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AfpApplication.class, args);
+		System.out.println("======] AFP is running [======");
 	}
 }

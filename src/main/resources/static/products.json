@@ -1,0 +1,25 @@
+{
+	"products": [
+		{
+			"sku": "001",
+			"name": "Product One",
+			"description": "This is product number one",
+			"price": "3.99",
+			"inStock": 10
+		},
+		{
+			"sku": "002",
+			"name": "Product Two",
+			"description": "This is product number two",
+			"price": "1.99",
+			"inStock": 3
+		},
+		{
+			"sku": "003",
+			"name": "Product Three",
+			"description": "This is product number three",
+			"price": "8.99",
+			"inStock": 5
+		}
+	]
+}
