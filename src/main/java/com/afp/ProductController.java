@@ -47,13 +47,14 @@ public class ProductController {
     @RequestMapping("/buy")
     public String buy(@RequestParam("sku") int sku){
     	Commerce commerce = new Commerce();
-    	Product product;
+    	Product product = null;
     	for(int i=0; i<this.products.length; i++){
     		if(this.products[i].getSku() == sku){
     			product = products[i];
+    			return commerce.buy(product);
     		}
     	}
-    	return commerce.buy(products[1]);
+	    return "Product not found";	
     }
     
 }
