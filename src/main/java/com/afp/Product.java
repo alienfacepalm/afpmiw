@@ -1,8 +1,5 @@
 package com.afp;
 
-import com.fasterxml.jackson.annotation.*;
-
-@JsonRootName(value="products")
 public class Product {
 
 	private int sku;
@@ -19,11 +16,6 @@ public class Product {
         this.description = description;
         this.price = price;
         this.inStock = inStock;
-    }
-
-    @Override
-    public String toString(){
-    	return "Product [sku="+sku+", name="+name+", description="+description+", price="+price+", inStock="+inStock+"]";
     }
     
     public int getSku(){

@@ -1,39 +1,32 @@
 package com.afp;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
-
-import java.io.File;
 import java.io.IOException;
 
-import java.net.URL;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
 
-import org.codehaus.jackson.*;
-import org.codehaus.jackson.map.*;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
-import com.fasterxml.jackson.annotation.*;
 
 @JsonRootName(value="products")
 @RestController
 public class ProductController {
 
+	private ProductStub stub = new ProductStub();
+	private Product[] products = stub.getProducts();
+	
     @RequestMapping("/products")
     @ResponseBody 
     public String products(){
     	
     	String json = "";
-    	
-    	Product[] products = new Product[3];
-    	products[0] = new Product(002, "Toy Car", "A toy car to play with", 2.99, 10);
-    	products[1] = new Product(003, "Toy Boat", "A toy boat to play with", 8.99, 10);
-    	products[2] = new Product(001, "Toy Plane", "A toy plane to play with", 4.99, 10);
     	
     	try{
     		ObjectMapper mapper = new ObjectMapper();	
@@ -53,7 +46,14 @@ public class ProductController {
     
     @RequestMapping("/buy")
     public String buy(@RequestParam("sku") int sku){
-    	return "You are buying item "+String.format("%03d", sku);
+    	Commerce commerce = new Commerce();
+    	Product product;
+    	for(int i=0; i<this.products.length; i++){
+    		if(this.products[i].getSku() == sku){
+    			product = products[i];
+    		}
+    	}
+    	return commerce.buy(products[1]);
     }
     
 }
